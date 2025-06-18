@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.vip361b7.d1020.com">
+    <uses-feature android:glEsVersion="0x00020000"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED"/>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED"/>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL"/>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.vip361b7.d1020.com.permission.JPUSH_MESSAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
+    <permission android:name="com.vip361b7.d1020.com.permission.MIPUSH_RECEIVE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.vip361b7.d1020.com.permission.MIPUSH_RECEIVE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE"/>
+    <permission android:name="com.vip361b7.d1020.com.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.vip361b7.d1020.com.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <uses-permission android:name="com.hihonor.push.permission.READ_PUSH_NOTIFICATION_INFO"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission android:name="com.vip361b7.d1020.com.permission.JPUSH_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
+    <uses-permission android:name="com.vivo.notification.permission.BADGE_ICON"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <queries>
+        <intent>
+            <action android:name="com.hihonor.push.action.BIND_PUSH_SERVICE"/>
+        </intent>
+    </queries>
+    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:name="org.cocos2dx.javascript.App" android:supportsRtl="true" android:usesCleartextTraffic="true">
+        <meta-data android:name="com.xinstall.APP_KEY" android:value=""/>
+        <meta-data android:name="com.sharetrace.APP_KEY" android:value=""/>
+        <meta-data android:name="com.shareinstall.APP_KEY" android:value=""/>
+        <meta-data android:name="com.openinstall.APP_KEY" android:value="pg9c57"/>
+        <meta-data android:name="com.acttrace.APP_KEY" android:value="nnsuyq16"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="50636b43e983dcc93531df35"/>
+        <meta-data android:name="MEIZU_APPKEY" android:value="MZ-7c7fbdba6c7d42678443b4c736d42972"/>
+        <meta-data android:name="MEIZU_APPID" android:value="MZ-150667"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_launcher"/>
+        <meta-data android:name="android.app.lib_name" android:value="cocos2djs"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize" android:name="org.cocos2dx.javascript.GameActivity" android:process=":webview_process" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize" android:exported="true" android:label="@string/app_name" android:launchMode="singleTop" android:name="org.cocos2dx.javascript.AppActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="topay" android:path="/alipay" android:scheme="qpby"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenSize" android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"/>
+        <provider android:authorities="com.vip361b7.d1020.com.fileProvider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <service android:enabled="true" android:exported="false" android:name="org.cocos2dx.javascript.PushService" android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action"/>
+            </intent-filter>
+        </service>
+        <receiver android:enabled="true" android:exported="false" android:name="org.cocos2dx.javascript.PushMessageReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="true" android:exported="true" android:name="cn.jpush.android.service.PushReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="cn.jpush.android.asus.AsusPushMessageReceiver"/>
+        <service android:enabled="true" android:exported="false" android:name="com.xiaomi.push.service.XMJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":pushservice"/>
+        <service android:enabled="true" android:name="com.xiaomi.push.service.XMPushService" android:process=":pushservice"/>
+        <service android:enabled="true" android:exported="true" android:name="com.xiaomi.mipush.sdk.PushMessageHandler"/>
+        <service android:enabled="true" android:name="com.xiaomi.mipush.sdk.MessageHandleService"/>
+        <receiver android:exported="true" android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.xiaomi.push.service.receivers.PingReceiver" android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="cn.jpush.android.service.PluginXiaomiPlatformsReceiver">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="cn.jpush.android.service.PluginVivoMessageReceiver">
+            <intent-filter>
+                <action android:name="com.vivo.pushclient.action.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="true" android:name="com.vivo.push.sdk.service.CommandClientService"/>
+        <activity android:exported="false" android:name="com.vivo.push.sdk.LinkProxyClientActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:name="com.meizu.cloud.pushsdk.NotificationService"/>
+        <receiver android:exported="true" android:name="com.meizu.cloud.pushsdk.MzPushSystemReceiver" android:permission="com.meizu.flyme.permission.PUSH">
+            <intent-filter>
+                <action android:name="com.meizu.flyme.push.intent.PUSH_SYSTEM"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="cn.jpush.android.service.PluginMeizuPlatformsReceiver">
+            <intent-filter>
+                <action android:name="com.meizu.flyme.push.intent.MESSAGE"/>
+                <action android:name="com.meizu.flyme.push.intent.REGISTER.FEEDBACK"/>
+                <action android:name="com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK"/>
+                <action android:name="com.meizu.c2dm.intent.REGISTRATION"/>
+                <action android:name="com.meizu.c2dm.intent.RECEIVE"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </receiver>
+        <activity android:configChanges="keyboardHidden|navigation|orientation" android:exported="false" android:name="com.tencent.captchasdk.TCaptchaPopupActivity" android:theme="@style/TCaptchaPopupDialogActivity"/>
+        <meta-data android:name="com.hihonor.push.sdk_version" android:value="7.0.1.103"/>
+        <activity android:exported="true" android:name="cn.jpush.android.ui.PopWinActivity" android:theme="@style/MyDialogStyle">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="cn.jpush.android.ui.PopWinActivity"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation" android:exported="true" android:name="cn.jpush.android.ui.PushActivity" android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </activity>
+        <service android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.PushService" android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER"/>
+                <action android:name="cn.jpush.android.intent.REPORT"/>
+                <action android:name="cn.jpush.android.intent.PushService"/>
+                <action android:name="cn.jpush.android.intent.PUSH_TIME"/>
+            </intent-filter>
+        </service>
+        <service android:enabled="true" android:exported="true" android:name="cn.jpush.android.service.DaemonService">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </service>
+        <activity android:enabled="true" android:exported="true" android:name="cn.jpush.android.service.DActivity" android:taskAffinity="jpush.custom" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DActivity"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </activity>
+        <receiver android:exported="false" android:name="cn.jpush.android.service.AlarmReceiver"/>
+        <receiver android:exported="false" android:name="cn.jpush.android.service.SchedulerReceiver"/>
+        <provider android:authorities="com.vip361b7.d1020.com.DataProvider" android:exported="false" android:name="cn.jpush.android.service.DataProvider" android:process=":pushcore"/>
+        <provider android:authorities="com.vip361b7.d1020.com.DownloadProvider" android:exported="true" android:name="cn.jpush.android.service.DownloadProvider"/>
+        <provider android:authorities="com.vip361b7.d1020.com.JAdFileProvider" android:exported="false" android:grantUriPermissions="true" android:name="cn.jiguang.union.ads.service.JAdFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/jpush_file_paths"/>
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.FileProvider"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </provider>
+        <activity android:exported="true" android:name="cn.jpush.android.service.JNotifyActivity" android:taskAffinity="jpush.custom" android:theme="@style/JPushTheme">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.JNotifyActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="true" android:name="cn.android.service.JTransitActivity" android:taskAffinity="jpush.custom" android:theme="@style/JPushTheme">
+            <intent-filter>
+                <action android:name="cn.android.service.JTransitActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.vip361b7.d1020.com"/>
+            </intent-filter>
+        </activity>
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
+        <service android:exported="false" android:name="cn.jpush.android.service.JHonorService">
+            <intent-filter>
+                <action android:name="com.hihonor.push.action.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data android:name="com.hihonor.push.app_id" android:value="104408702"/>
+        <meta-data android:name="android.arch.lifecycle.VERSION" android:value="27.0.0-SNAPSHOT"/>
+    </application>
+</manifest>
