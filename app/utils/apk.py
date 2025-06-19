@@ -2,9 +2,10 @@ import logging
 import os
 import random
 import shutil
-from dataclasses import dataclass
 
 from app.utils.common import CommandUtils, RandomNameUtils
+from app.utils import resguard, packager
+from app.utils.signing import KeyStoreInfo
 
 
 class ApkUtils:
@@ -70,12 +71,6 @@ class ApkUtils:
         return apk_output_path
 
 
-@dataclass
-class KeyStoreInfo:
-    keystore_path: str
-    key_alias: str
-    key_store_pass: str
-    key_pass: str
 
 
 class SignUtils:
@@ -144,27 +139,10 @@ class SignUtils:
         :return 输出 apk 路径
         """
         logging.debug('res guard signature apk...')
-        # 生成临时签名文件，在 apk_path 同目录下生成，使用过后会删除
         keystore_path = os.path.join(os.path.dirname(apk_path), 'android.keystore')
         keystore_info = SignUtils.new_temp_key_store(keystore_path)
-        # 重新签名，在 apk_path 同目录下生成，完成后删除临时目录
-        command_signature: str = (
-            f'java -jar {os.path.realpath(os.path.join(os.path.dirname(__file__), "..", "lib", "AndResGuard-cli-1.2.15.jar"))} {apk_path} '
-            f'-config {os.path.realpath(os.path.join(os.path.dirname(__file__), "..", "lib", "config.xml"))} '
-            f'-out {os.path.join(os.path.dirname(apk_path), "res_guard_output")} '
-            f'-signatureType v2 '
-            f'-signature {keystore_info.keystore_path} {keystore_info.key_store_pass} {keystore_info.key_pass} {keystore_info.key_alias}'
-        )
-        CommandUtils.run_system_command(command_signature)
-        # 删除临时的中间文件，移动目标到同目录
-        res_guard_apk_name: str = os.path.basename(apk_path).split('.')[0] + '_7zip_aligned_signed.apk'
-        apk_output_path = os.path.join(os.path.dirname(apk_path), 'sign.apk')
-        shutil.move(
-            os.path.join(os.path.dirname(apk_path), 'res_guard_output', res_guard_apk_name),
-            apk_output_path
-        )
-        shutil.rmtree(os.path.join(os.path.dirname(apk_path), 'res_guard_output'))
-        # 签名完毕
+        config_path = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", "lib", "config.xml"))
+        apk_output_path = resguard.resguard_sign(apk_path, keystore_info, config_path)
         logging.debug('res guard signature done')
         return apk_output_path
 
@@ -179,20 +157,9 @@ class SignUtils:
         # 生成临时签名文件，并且移动到 apk_path 同目录下
         keystore_path = os.path.join(os.path.dirname(apk_path), 'android.keystore')
         keystore_info = SignUtils.new_temp_key_store(keystore_path)
-        # 重新签名，在 apk_path 同目录下生成
-        apk_output_path = os.path.join(os.path.dirname(apk_path), 'sign.apk')
-        # 加固签名
         jiagu_tool_dir_path = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", "JiaguTool"))
-        jiagu_command_path = os.path.join(jiagu_tool_dir_path, 'pack', 'bin', 'Jiagu-Pack')
         shell_dex_path = os.path.join(jiagu_tool_dir_path, 'bin', 'classes.dex')
         shell_lib_path = os.path.join(jiagu_tool_dir_path, 'bin', 'jni')
-        command_signature: str = (
-            f'{jiagu_command_path} --apk {apk_path} --apk-output {apk_output_path} '
-            f'--shell-dex {shell_dex_path} --shell-lib {shell_lib_path} '
-            f'--keystore {keystore_info.keystore_path} --alias {keystore_info.key_alias} '
-            f'--storepass {keystore_info.key_store_pass} --keypass {keystore_info.key_pass}'
-        )
-        CommandUtils.run_system_command(command_signature)
-        # 签名完毕
+        apk_output_path = packager.pack_and_sign(apk_path, shell_dex_path, shell_lib_path, keystore_info, True)
         logging.debug('jiagu signature done')
         return apk_output_path

@@ -73,7 +73,7 @@ class FileUtilsTest(BaseTestCase):
         self.assertTrue(True)
 
     def test_replace_file_content(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'assets', 'integers.xml')
+        file_path = os.path.join(os.path.dirname(__file__), 'assets', 'values', 'integers.xml')
         FileUtils.replace_file_content(
             file_path, lambda content: content.replace('abc_config_activityDefaultDur', 'test2'),
             just_print=True

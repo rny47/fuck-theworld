@@ -174,3 +174,6 @@ Options:
 
 
 ```
+
+### 更新说明
+- 本项目已使用 Python 实现 resguard.py 和 packager.py，完全替代 AndResGuard 与 Jiagu-Pack jar 工具。

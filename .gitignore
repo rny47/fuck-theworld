@@ -1,15 +1,15 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
-# Idea
-.idea
-# Project
+# IDE files
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# Build artifacts
 *.apk
-/app/__pycache__/utils.cpython-39.pyc
-/.vscode/settings.json
-venv
+*.keystore
+*.jar
+
+# Virtual environments
+venv/

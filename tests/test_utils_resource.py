@@ -26,7 +26,7 @@ class ManifestUtilsTest(BaseTestCase):
 class SmaliUtilsTest(BaseTestCase):
 
     def test_replace_package_name(self):
-        decompile_output_path = '/Users/spark/Temp/防报毒研究-同包名-361/361_original'
+        decompile_output_path = os.path.join(os.path.dirname(__file__), 'assets')
         SmaliUtils.replace_package_name(
             decompile_output_path,
             'com.vip361b7.d1020.com', 'com.example.test.jump',
@@ -35,7 +35,7 @@ class SmaliUtilsTest(BaseTestCase):
         self.assertTrue(True)
 
     def test_random_activity_name(self):
-        decompile_output_path = '/Users/spark/Temp/防报毒研究-同包名-361/361_original'
+        decompile_output_path = os.path.join(os.path.dirname(__file__), 'assets')
         SmaliUtils.random_activity_name(decompile_output_path, just_print=True)
         self.assertTrue(True)
 
@@ -44,8 +44,7 @@ class SmaliUtilsTest(BaseTestCase):
         self.assertTrue(True)
 
     def test_append_folder_smali_field(self):
-        decompile_output_path = os.path.dirname(__file__)
-        # decompile_output_path = '/Users/spark/Downloads/69-com.lbd273e0ff.f4cad9fcbf'
+        decompile_output_path = os.path.join(os.path.dirname(__file__), 'assets')
         SmaliUtils.append_folder_smali_field(decompile_output_path)
         self.assertTrue(True)
 
@@ -58,7 +57,7 @@ class SmaliUtilsTest(BaseTestCase):
 class XmlUtilsTest(BaseTestCase):
 
     def test_random_xml_resource(self):
-        decompile_output_path = '/Users/spark/Temp/防报毒研究-同包名-361/361_original'
+        decompile_output_path = os.path.join(os.path.dirname(__file__), 'assets')
         XmlUtils.random_xml_resource(decompile_output_path, just_print=True)
         self.assertTrue(True)
 
